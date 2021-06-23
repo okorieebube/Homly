@@ -16,7 +16,7 @@ class AuthUserController extends Controller
         if (!$token = Auth::attempt($request->all())) {
             return $this->error(400, 'Invalid Email or Password');
         }
-
+        
         return response()->json([
                 'status' => false,
                 'message' => 'Login Successful',
@@ -28,21 +28,26 @@ class AuthUserController extends Controller
     public function signup (SignupRequest $request){
         try {
             $user_id = $this->createUniqueToken('users', 'user_id');
-
             $create_user = User::create(array_merge($request->validated(), 
                                                     ['user_id' => $user_id]));
             
-            $create_user ? $this->verify(User::find($user_id)) 
+            $create_user ? $this->verify(User::find($user_id)->first(), false) 
                             : throw new Exception("User Registration Failed", 500);
-
         } catch (Exception $e) {
-            $this->error($e->getCode(), $e->getMessage());
+           return $this->error($e->getCode(), $e->getMessage());
         }
+
+        return $this->success("Sign Up Successful");
     }
 
 
     public function remember (){
 
+    }
+
+
+    public function resendVerificationLink(User $user){
+        return $this->verify($user , true);
     }
 
 

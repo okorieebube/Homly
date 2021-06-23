@@ -14,13 +14,15 @@ trait VerifyEmail {
 
     private $id;
 
-    protected function verify($user){
+    protected function verify($user, $resend){
         $this->id = $user->unique_id;
         $this->checkVerificationStatus($user);
 
         $verification_id = $this->createVerificationInstance();
         if($this->sendVerificationEmail($verification_id, $user)){
-            return $this->success("Verification Email Sent");
+
+            return $resend ? $this->success("Verification Email Sent") 
+                            : $this->success("A New Verification Email has been Sent");
         };
 
     }
@@ -69,7 +71,5 @@ trait VerifyEmail {
         
         return true;           
     }
-
-
 
 }

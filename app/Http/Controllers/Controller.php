@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Libraries\Status\Status;
-use App\HTTP\Libraries\Token;
+use App\HTTP\Libraries\Token\Token;
 use App\Http\Libraries\VerifyEmail\VerifyEmail;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;

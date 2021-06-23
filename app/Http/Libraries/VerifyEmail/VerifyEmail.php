@@ -1,12 +1,12 @@
 <?php
 namespace App\Http\Libraries\VerifyEmail;
 
-use App\HTTP\Libraries\Token;
+use App\Http\Libraries\Status\Status;
+use App\HTTP\Libraries\Token\Token;
 use App\Models\Verification;
 use App\Notifications\EmailVerification;
 use Exception;
 use Illuminate\Support\Facades\Notification;
-use Status;
 
 trait VerifyEmail {
 

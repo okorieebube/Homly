@@ -9,10 +9,10 @@ class Listing extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['listing_id', 'listing_title'];
+    protected $guard = [];
 
     protected $primaryKey = 'unique_id';
     protected $keyType = 'string';
     public $incrementing = false;
-    
+
 }
